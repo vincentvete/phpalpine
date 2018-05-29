@@ -1,4 +1,4 @@
-FROM php:7.0.30-cli-alpine
+FROM php:7.1.17-cli-alpine
 
 RUN apk --repository http://dl-3.alpinelinux.org/alpine/edge/community/ \
   --repository http://dl-3.alpinelinux.org/alpine/edge/main/ \
@@ -11,9 +11,8 @@ RUN apk --repository http://dl-3.alpinelinux.org/alpine/edge/community/ \
   libjpeg-turbo-dev \
   libpng-dev \
   freetype-dev \
-  openssl-dev \
   libmcrypt-dev \
-  && docker-php-ext-install mcrypt pdo_mysql pdo_pgsql \
+  && docker-php-ext-install opcache pcntl mcrypt pdo_mysql pdo_pgsql \
   && docker-php-ext-configure gd \
   --enable-gd-native-ttf \
   --with-png-dir=/usr/include/ \
